@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de la Pichanga</title>
+    <link rel="stylesheet" href="style3.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Detalles de la Pichanga</h1>
+        <div id="detallePichanga"></div>
+        <a href="index.html">Volver</a>
+
+        <script>
+            let pichangaSeleccionada = JSON.parse(localStorage.getItem('pichangaSeleccionada'));
+
+            if (pichangaSeleccionada) {
+                document.getElementById('detallePichanga').innerHTML = `
+                    <h2>${pichangaSeleccionada.nombre}</h2>
+                    <p><strong>Fecha:</strong> ${pichangaSeleccionada.fecha}</p>
+                    <h3>Resumen de Pagos:</h3>
+                    ${pichangaSeleccionada.detalles}
+                `;
+            } else {
+                document.getElementById('detallePichanga').innerHTML = `<p>No hay datos disponibles.</p>`;
+        }
+    </script>
+    </div>
+
+</body>
+</html>

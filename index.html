@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Pichangas</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<header>
+    <div>
+        <h1>Calculadora de Gastos de Fútbol ⚽</h1>    
+    </div>
+</header>
+
+<body>
+    <div class="container">
+        <h2>📜 Historial de Pichangas</h2>
+        <div id="historial"></div>
+        <button onclick="window.location.href='index2.html'">➕ Crear Nueva Pichanga</button>
+    </div>
+
+    <footer class="imagenfot1">
+        <img src="futbol1.png" class="imagenfot">
+    </footer>
+    
+    <script>
+        let historial = JSON.parse(localStorage.getItem('historial')) || [];
+        function cargarHistorial() {
+            let historialLista = document.getElementById('historial');
+            historialLista.innerHTML = '';
+            historial.forEach((pichanga, index) => {
+                let div = document.createElement('div');
+                div.classList.add('pichanga-item');
+                div.innerHTML = `<strong>${pichanga.nombre}</strong><br>${pichanga.fecha}`;
+                div.onclick = () => {
+                    localStorage.setItem('pichangaSeleccionada', JSON.stringify(pichanga));
+                    window.location.href = 'index3.html';
+                };
+                historialLista.appendChild(div);
+            });
+        }
+        cargarHistorial();
+    </script>
+</body>
+</html>

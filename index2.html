@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Gastos de Fútbol</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+
+<body>
+    <header>
+        <div>
+            <h1>Calculadora de Gastos de Fútbol ⚽</h1>    
+        </div>
+    </header>
+
+    <section class="Calculadora">
+        <div class="container1">        
+            <h2>Calculadora de Gastos de Pichanga</h2>
+
+            <label for="nombrePichanga">📅 Lugar de la Pichanga:</label>
+            <input type="text" id="nombrePichanga" placeholder="Ingrese el nombre">
+
+            <label for="cancha">💰 Costo de alquiler de cancha:</label>
+            <input type="number" id="cancha" placeholder="Ingrese el costo">
+
+            <label for="ingreso">🎟 Costo total de ingreso:</label>
+            <input type="number" id="ingreso" placeholder="Ingrese el costo total">
+
+            <label for="costoComida">🍔 Costo total de la comida:</label>
+            <input type="number" id="costoComida" placeholder="Ingrese el costo total">
+
+            <label for="costoBebida">🥤 Costo total de la bebida:</label>
+            <input type="number" id="costoBebida" placeholder="Ingrese el costo total">
+
+            <label for="numPersonas">👥 Número de personas:</label>
+            <input type="number" id="numPersonas" placeholder="Ingrese el número" onchange="agregarPersonas()">
+
+            <div id="personas"></div>
+        </div>
+        
+        <div class="container2">
+            <button onclick="calcularTotal()">Calcular Total</button>
+            <button onclick="guardarPichanga()">Guardar Pichanga</button>
+            <a href="index.html">Volver</a>
+        </div>
+
+        <div class="container3">
+            <h2>Pagarán...</h2>
+            <h3 class="resultado" id="resultado"></h3>
+        </div>
+    </section>
+
+    <footer class="imagenfot1">
+        <img src="futbol1.png" class="imagenfot">
+    </footer>
+
+    <script>
+        let historial = JSON.parse(localStorage.getItem('historial')) || [];
+
+        function agregarPersonas() {
+            let num = Number(document.getElementById('numPersonas').value);
+            if (isNaN(num) || num <= 0) num = 1;
+
+            let container = document.getElementById('personas');
+            container.innerHTML = '';
+            for (let i = 0; i < num; i++) {
+                let div = document.createElement('div');
+                div.classList.add('person');
+                div.innerHTML = `<input type='text' placeholder='Nombre' class='nombre'>
+                                <label>🍔 Comió <input type='checkbox' class='comio'></label>
+                                <label>🥤 Bebió <input type='checkbox' class='bebio'></label>`;
+                container.appendChild(div);
+            }
+        }
+
+        function calcularTotal() {
+            let cancha = parseFloat(document.getElementById('cancha').value) || 0;
+            let ingreso = parseFloat(document.getElementById('ingreso').value) || 0;
+            let costoComida = parseFloat(document.getElementById('costoComida').value) || 0;
+            let costoBebida = parseFloat(document.getElementById('costoBebida').value) || 0;
+            let personas = document.querySelectorAll('.person');
+
+            let numPersonas = personas.length;
+            if (numPersonas === 0) {
+                document.getElementById('resultado').innerHTML = "<p>Error: No hay personas agregadas.</p>";
+                return;
+            }
+
+            let personasQueComieron = Array.from(personas).filter(p => p.querySelector('.comio').checked).length || 1;
+            let personasQueBebieron = Array.from(personas).filter(p => p.querySelector('.bebio').checked).length || 1;
+
+            let totalCanchaPorPersona = numPersonas > 0 ? cancha / numPersonas : 0;
+            let totalIngresoPorPersona = numPersonas > 0 ? ingreso / numPersonas : 0;
+            let totalComidaPorPersona = personasQueComieron > 0 ? costoComida / personasQueComieron : 0;
+            let totalBebidaPorPersona = personasQueBebieron > 0 ? costoBebida / personasQueBebieron : 0;
+
+            let resultados = '';
+            personas.forEach(persona => {
+                let nombre = persona.querySelector('.nombre').value || 'Desconocido';
+                let comio = persona.querySelector('.comio').checked;
+                let bebio = persona.querySelector('.bebio').checked;
+                let total = totalCanchaPorPersona + totalIngresoPorPersona;
+
+                if (comio) total += totalComidaPorPersona;
+                if (bebio) total += totalBebidaPorPersona;
+
+                resultados += `<p>${nombre} debe pagar: <strong>$${total.toFixed(2)}</strong></p>`;
+            });
+
+            document.getElementById('resultado').innerHTML = resultados;
+        }
+
+        function guardarPichanga() {
+            let nombre = document.getElementById('nombrePichanga').value || 'Sin nombre';
+            let fecha = new Date().toLocaleString();
+            let datos = document.getElementById('resultado').innerHTML;
+            if (datos) {
+                historial.push({ nombre, fecha, detalles: datos });
+                localStorage.setItem('historial', JSON.stringify(historial));
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

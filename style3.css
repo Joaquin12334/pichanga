@@ -1,0 +1,69 @@
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: #1e1e2f;
+    color: white;
+    text-align: center;
+    margin-bottom: 12vh;
+    background-image: url('campo1.png'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.container {
+    display: flex;
+    background: #29293d;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    width: 35%;
+    height: 700px;
+    margin: auto;
+    margin-top: 12vh;
+    margin-bottom: 12vh;
+    transform: scale(1); 
+    border: 3px solid #009534;
+    border-radius: 15px;
+    flex-direction: column;
+    font-size: 30px;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.container a {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    text-decoration: none; 
+    padding: 10px; 
+    background: #009534; 
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 30%;
+    height: 70px;
+    font-size: 30px;
+    margin-top: 30px;
+
+}
+
+.container a:hover {
+    background: #02792c;
+}
+
+.history {
+    background: #2b2b3c;
+    padding: 15px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}

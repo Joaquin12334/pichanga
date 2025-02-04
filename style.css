@@ -1,0 +1,83 @@
+
+
+header {
+    text-align: center;
+    background-color: #02792c;
+    color: white;
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e2f;
+    color: white;
+    text-align: center;
+    background-image: url('campo1.png'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    background: #29293d;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10vh auto;
+    margin-bottom: 12vh;
+    transform: scale(1); 
+    border: 3px solid #009534;
+    border-radius: 15px;
+}
+
+button {
+    margin-top: 1.5%;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    background: #009534;
+    color: white;
+    cursor: pointer;
+    font-size: 1.7vh;
+}
+
+button:hover {
+    background: #02792c;
+}
+
+.pichanga-item {
+    background: #3b3b58;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.imagenfot1{
+    max-width: 100px;
+    height: auto;
+}
+
+.imagenfot{
+    display: flex;
+    position: fixed;
+    bottom: 0;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        margin-top: 5vh;
+    }
+    header {
+        font-size: 1rem;
+    }
+}
