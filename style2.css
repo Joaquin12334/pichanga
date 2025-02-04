@@ -43,7 +43,6 @@ body::-webkit-scrollbar {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
 }
 
 .container1 {
@@ -174,10 +173,19 @@ button:hover, a:hover {
         margin: 0;
     }
 
+    .Calculadora {
+        display: flex;
+        height: 150vh;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
     .container1, .container2, .container3 {
         width: 80%;
         margin-top: 7vh;
     }
+
     header {
         font-size: 1rem;
     }
