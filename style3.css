@@ -25,9 +25,8 @@ body::-webkit-scrollbar {
     width: 35%;
     height: 700px;
     margin: auto;
-    margin-top: 12vh;
-    margin-bottom: 12vh;
-    transform: scale(1); 
+    margin-top: 15vh;
+    margin-bottom: 10vh;
     border: 3px solid #009534;
     border-radius: 15px;
     flex-direction: column;
@@ -66,4 +65,22 @@ body::-webkit-scrollbar {
     width: 80%;
     max-width: 600px;
     text-align: center;
+}
+
+@media (max-width: 600px) {
+
+    body {
+        background-image: url("campo2.png");
+        background-repeat: repeat;
+        background-size: contain;
+        margin: 0;
+    }
+
+    .container {
+        width: 80%;
+        margin-top: 7vh;
+    }
+    header {
+        font-size: 1rem;
+    }
 }

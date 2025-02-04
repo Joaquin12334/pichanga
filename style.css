@@ -73,9 +73,15 @@ button:hover {
 }
 
 @media (max-width: 600px) {
+
+    body {
+        background-image: url("campo2.png");
+        margin: 0;
+    }
+
     .container {
-        width: 95%;
-        margin-top: 5vh;
+        width: 80%;
+        margin-top: 7vh;
     }
     header {
         font-size: 1rem;
